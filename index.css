@@ -1,0 +1,70 @@
+body {
+  background-color: #e6e6e6;
+  font-family: Arial, sans-serif;
+}
+
+.Form {
+  width: 100%;
+}
+
+.Form > div {
+  width: 400px;
+  background-color: white;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+center {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* labels */
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+/* inputs */
+.a {
+  width: 100%;
+  padding: 6px;
+  margin-top: 5px;
+  border: 1px solid #aaa;
+}
+
+/* error messages */
+p {
+  margin: 3px 0;
+  color: red;
+  font-size: 12px;
+}
+
+/* radio section */
+.nocss {
+  margin-top: 10px;
+}
+
+.no {
+  margin-left: 5px;
+}
+
+/* terms */
+.termsAndConditions {
+  margin-top: 10px;
+}
+
+/* submit button */
+input[type="submit"] {
+  margin-top: 15px;
+  padding: 6px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}

@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Form</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <script>
+      const handleName = () => {
+        const name = document.getElementById("name").value;
+        const p = document.getElementById("1");
+
+        if (name.length === 0) {
+          p.innerText = "name should not be empty";
+        } else {
+          p.innerText = "";
+        }
+      };
+
+      const handleEmail = () => {
+        const email = document.getElementById("email").value;
+        const p = document.getElementById("2");
+        if (email == "") {
+          p.innerText = "";
+        }
+
+        const parts = email.split("@");
+
+        if (
+          parts.length !== 2 ||
+          !parts[1].includes(".") ||
+          parts[1].startsWith(".") ||
+          parts[1].endsWith(".")
+        ) {
+          p.innerText = "Enter a valid email";
+        } else {
+          p.innerText = "";
+        }
+      };
+
+      const handlePass = () => {
+        const pass = document.getElementById("password").value;
+        const p = document.getElementById("3");
+
+        if (pass.length < 8) {
+          p.innerText = "Password should contain at least 8 characters";
+        } else {
+          p.innerText = "";
+        }
+      };
+
+      const handlePhone = () => {
+        const phone = document.getElementById("phone").value;
+        const p = document.getElementById("4");
+
+        if (phone.length !== 10) {
+          p.innerText = "Enter a valid phone number";
+          return;
+        }
+
+        for (let i = 0; i < phone.length; i++) {
+          const ch = phone[i];
+          if (ch < "0" || ch > "9") {
+            p.innerText = "Enter a valid phone number";
+            return;
+          }
+        }
+
+        p.innerText = "";
+      };
+
+      const handleConformPass = () => {
+        const pass = document.getElementById("password").value;
+        const conformPass = document.getElementById("conformPass").value;
+        const p = document.getElementById("21");
+
+        if (pass !== conformPass) {
+          p.innerText = "Password not matched";
+        } else {
+          p.innerText = "";
+        }
+      };
+
+      const onSubmit = (e) => {
+        e.preventDefault();
+
+        handleName();
+        handleEmail();
+        handlePass();
+        handleConformPass();
+        handlePhone();
+
+        let isValid = true;
+
+        const genderError = document.getElementById("0");
+        if (!e.target.gender.value) {
+          genderError.innerText = "please select your gender";
+          isValid = false;
+        } else {
+          genderError.innerText = "";
+        }
+
+        const termsError = document.getElementById("01");
+        if (!document.getElementById("checkbox").checked) {
+          termsError.innerText = "accept the terms and conditions";
+          isValid = false;
+        } else {
+          termsError.innerText = "";
+        }
+
+        const errorIds = ["1", "2", "3", "21", "4", "0", "01"];
+        for (let id of errorIds) {
+          if (document.getElementById(id).innerText !== "") {
+            isValid = false;
+            break;
+          }
+        }
+
+        const finalError = document.getElementById("finalError");
+
+        if (!isValid) {
+          finalError.innerText =
+            "Please fill all fields correctly before submitting ";
+          return;
+        }
+
+        finalError.innerText = "";
+        alert("Form submitted successfully ");
+        e.target.submit();
+      };
+    </script>
+
+    <div class="Form">
+      <div>
+        <center>Form</center>
+
+        <form onsubmit="onSubmit(event)">
+          <label>Name</label>
+          <input
+            type="text"
+            class="a"
+            name="name"
+            id="name"
+            onchange="handleName()"
+          />
+          <p id="1"></p>
+
+          <label>Email</label>
+          <input
+            class="a"
+            type="email"
+            name="email"
+            id="email"
+            onchange="handleEmail()"
+          />
+          <p id="2"></p>
+
+          <label>Password</label>
+          <input
+            class="a"
+            type="password"
+            name="password"
+            id="password"
+            onchange="handlePass()"
+          />
+          <p id="3"></p>
+
+          <label>Confirm Password</label>
+          <input
+            class="a"
+            type="password"
+            name="conformPass"
+            id="conformPass"
+            onchange="handleConformPass()"
+          />
+          <p id="21"></p>
+
+          <label>Phone Number</label>
+          <input
+            type="text"
+            class="a"
+            name="phone"
+            id="phone"
+            onchange="handlePhone()"
+          />
+          <p id="4"></p>
+
+          <div class="nocss">
+            <label>Male</label>
+            <input type="radio" name="gender" value="male" />
+            <label>Female</label>
+            <input type="radio" name="gender" value="female" />
+            <p id="0"></p>
+          </div>
+
+          <div class="termsAndConditions">
+            <label>Terms and conditions</label>
+            <input type="checkbox" id="checkbox" />
+          </div>
+          <p id="01"></p>
+
+          <p id="finalError" style="color: red"></p>
+
+          <input type="submit" value="submit" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
